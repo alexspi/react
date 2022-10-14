@@ -5,6 +5,7 @@ import {Count} from "./components/Count";
 import {Child} from "./components/Child";
 import {useState} from "react";
 import './index.css';
+import {Message} from "./class-components/Message";
 
 export const App = () => {
 
@@ -16,6 +17,10 @@ export const App = () => {
     }
     return (
         <div className="App">
+
+            <Message message="Изменяемое сообщение"/>
+            <hr/>
+            <hr/>
             <CountClass count={10}/>
             <h2>Class</h2>
             <FormClass/>
