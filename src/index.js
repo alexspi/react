@@ -1,24 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
-import {App} from './App';
-import {DevSupport} from "@react-buddy/ide-toolbox";
+import App from './App';
 
-// const span = React.createElement('h1', {}, 'My first span')
-//
-// const element = React.createElement('h1', {className: 'my-class'}, span)
+const myName = 'Maxim';
 
-
-// const element=()=>{
-//     return <div>me first ggg</div>
-// }
-//
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    // <DevSupport ComponentPreviews={ComponentPreviews}
-    //             useInitialHook={useInitial}
-    // >
-        <App/>
-    // </DevSupport>
+ReactDOM.render(
+  <React.StrictMode>
+    <App name={myName}/>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
