@@ -1,45 +1,58 @@
-import {Form as FormClass} from "./class-components/Form";
-import {Count as CountClass} from "./class-components/Count";
-import {Form} from "./components/Form/Form";
-import {Count} from "./components/Count";
-import {Child} from "./components/Child";
-import {useState} from "react";
-import './index.css';
-import {Message} from "./class-components/Message";
+import './App.css';
+import React, {useState, useEffect} from 'react';
 
-export const App = () => {
+function App() {
+    const [messageList, setMessagesList] = useState([]);
+    const [value, setValue] = useState("");
 
-    const [name, setName] = useState('geeck')
-    const [count, setCount] = useState(0)
-    const arr=['ivanov', 'petrov', 'vasechkin']
-    const handleChangeName = (ev) => {
-        setName(ev.target.value)
+    const handleChange = (event) => {
+        const valueFromInput = event.target.value;
+        setValue(valueFromInput);
     }
-    return (
-        <div className="App">
 
-            <Message message="Изменяемое сообщение"/>
-            <hr/>
-            <hr/>
-            <CountClass count={10}/>
-            <h2>Class</h2>
-            <FormClass/>
-            <hr/>
-            <Count name={"geeekkk"}/>
-            <hr/>
-            <h3>Parent</h3>
-            <p>{count}</p>
-            <input type={"text"} onChange={handleChangeName}/>
-            <h3>Child</h3>
-            <Child name={name} handleChangeCount={setCount}/>
-            <hr/>
-            <Form/>
-            <hr/>
-            {arr.map((item,idx) => (
-                <div key={idx}>{item}</div>
-            ))}
+
+    const handleSend = () => {
+        setMessagesList([...messageList, {text: value, author: 'me'}]);
+        setValue('');
+    }
+    useEffect(() => {
+        let timer;
+        if (messageList.length > 0 && messageList[messageList.length - 1].author === 'me') {
+            timer = setInterval(() => {
+                setMessagesList([...messageList, {
+                    text: 'Сообщение Бота',
+                    author: 'bot'
+                }]);
+            }, 1500);
+        }
+
+        return () => {
+            clearTimeout(timer);
+        }
+    }, [messageList])
+
+    const styleAuthor = {
+        fontSize: 10,
+        color: 'white'
+    }
+
+
+    return (
+        <div className='App'>
+
+            <div className='dashboard'>
+                {messageList.map((message) => (
+                    <div className={`styleMessages ${message.author === 'me' ? 'me' : 'bot'}`}>
+                        {message.text} <sup style={styleAuthor}>{message.author} </sup>
+                    </div>
+                ))}
+            </div>
+            <div className='controlPanel'>
+                <input value={value} onChange={handleChange}/>
+                <button onClick={handleSend}>Отправить</button>
+            </div>
         </div>
     );
 }
 
-
+export default App;
