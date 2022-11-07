@@ -1,17 +1,56 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import {createTheme, MuiThemeProvider} from "@material-ui/core/styles";
+import {createStyles, makeStyles} from '@material-ui/core';
+import Routers from "./pages/Routers";
+import {BrowserRouter} from "react-router-dom";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+const useGlobalStyles = makeStyles(() =>
+    createStyles({
+        '@global': {
+            html: {
+                '-webkit-font-smoothing': 'antialiased',
+                height: '100%',
+                width: '100%'
+            },
+            body: {
+                height: '100%',
+                width: '100%'
+            },
+            '#root': {
+                height: '100%',
+                width: '100%'
+            }
+        }
+    })
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#008CFFFF',
+        },
+        secondary: {
+            main: "#0098FF",
+        },
+    },
+});
+
+const GlobalStyles = () => {
+    useGlobalStyles();
+    return null;
+};
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
+    <MuiThemeProvider theme={theme}>
+        <GlobalStyles/>
+        <BrowserRouter>
+            <Routers/>
+        </BrowserRouter>
+
+    </MuiThemeProvider>,
+    document.getElementById('root')
+);
