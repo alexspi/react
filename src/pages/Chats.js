@@ -1,16 +1,20 @@
-import {useParams} from "react-router-dom";
+import MessageList from '../components/MessageList';
+import ChatList from '../components/ChatList';
+import ControlPanel from "../components/ControlPanel";
 
-import NoChats from "./NoChats";
+const Chat = () => {
 
-const Chats = ({chats}) => {
-    let {chatId} = useParams();
-
-    return chats[chatId] ? (
-        <div className={'chats'}>
-            {chatId}
+    return (
+        <div className='chatsList'>
+            <ChatList />
+            <div style={{height: "300" }}>
+                <MessageList />
+                <ControlPanel />
+            </div>
         </div>
-    ) : <NoChats/>;
+    )
 }
-export default Chats;
+export default Chat;
+
 
 

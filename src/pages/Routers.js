@@ -14,8 +14,6 @@ const chatListInitial = [
 ];
 
 const Routers = () => {
-    const [chats] = useState(chatListInitial);
-
     return (
         <div className='chatsList'>
             <Box sx={{display: 'flex', width: 300, color: 'D636C9'}}>
@@ -40,12 +38,9 @@ const Routers = () => {
             <div className={'messenger'}>
                 <Routes>
                     <Route path="/" exact element={<Home/>}/>
-                    <Route path="/chats/:chatId" element={<Chats
-                        chats={chats}
-                    />
-                    }/>
+                    <Route path="/chats/:chatId" element={<Chats /> }/>
                     <Route path="/Profile" element={<Profile/>}/>
-                    <Route path="*" element={<NoChats chats={chats}/>}/>
+                    <Route path="*" element={<NoChats />}/>
                 </Routes>
             </div>
 

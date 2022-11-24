@@ -1,3 +1,6 @@
+import {CHANGE_NAME} from "./chatActions"
+
+
 const initialState = {
     showName: true,
     name: "Dmitriy"
@@ -5,11 +8,10 @@ const initialState = {
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "EXAMPLE_ACTION":
-            console.log("action--=--")
+        case CHANGE_NAME:
             return {
                 ...state,
-                showName: !state.showName
+                name: action.payload
             };
         default:
             return state;

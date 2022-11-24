@@ -1,10 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 import {createTheme, MuiThemeProvider} from "@material-ui/core/styles";
 import {createStyles, makeStyles} from '@material-ui/core';
 import Routers from "./pages/Routers";
 import {BrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
+import {store} from "./store";
 
 const useGlobalStyles = makeStyles(() =>
     createStyles({
@@ -42,15 +44,13 @@ const GlobalStyles = () => {
     return null;
 };
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-
-root.render(
-    <MuiThemeProvider theme={theme}>
-        <GlobalStyles/>
-        <BrowserRouter>
+ReactDOM.render(
+    <BrowserRouter>
+        <Provider store={store}>
             <Routers/>
-        </BrowserRouter>
+        </Provider>
+    </BrowserRouter>
 
-    </MuiThemeProvider>,
+    ,
     document.getElementById('root')
 );
