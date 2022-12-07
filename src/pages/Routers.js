@@ -6,6 +6,7 @@ import Chats from "./Chats";
 import Profile from "./Profile";
 import NoChats from "./NoChats";
 import '../App.css';
+import Gists from "./Gists";
 
 const chatListInitial = [
     {id: '1', name: 'First'},
@@ -33,6 +34,11 @@ const Routers = () => {
                             <Link to='/profile'>Profile</Link>
                         </ListItemButton>
                     </ListItem>
+                    <ListItem disablePadding>
+                        <ListItemButton sx={{height: 56}}>
+                            <Link to='/gists'>Gists</Link>
+                        </ListItemButton>
+                    </ListItem>
                 </Paper>
             </Box>
             <div className={'messenger'}>
@@ -41,6 +47,7 @@ const Routers = () => {
                     <Route path="/chats/:chatId" element={<Chats /> }/>
                     <Route path="/Profile" element={<Profile/>}/>
                     <Route path="*" element={<NoChats />}/>
+                    <Route path="/gists" element={<Gists/>}/>
                 </Routes>
             </div>
 
