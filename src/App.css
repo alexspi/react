@@ -1,0 +1,119 @@
+.App {
+  text-align: center;
+  width: 900px;
+  min-height: 550px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 40px;
+  flex-direction: row;
+}
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  min-height: 500px;
+  margin: auto;
+  background-color: #D636C9;
+  border-radius: 10px;
+  padding: 25px;
+}
+.styleMessages {
+  font-size: 20px;
+  color: black;
+  border: 1px solid black;
+  margin-top: 5px;
+  width: auto;
+  background-color: #9DB82E;
+  padding: 5px;
+  border-radius: 7px;
+}
+.styleMessages.me {
+  text-align: right;
+}
+.styleMessages.bot {
+  text-align: left;
+}
+.controlPanel {
+  margin: 10px 20px;
+  display: flex;
+  width: 300px;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+.App-header {
+  top: 100px;
+  background-color: #560c86;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.App-link {
+  color: #61dafb;
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.header-red {
+  background-color: red;
+}
+.header-blue {
+  background-color: blue;
+}
+.chatsList {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 300px;
+  margin: auto;
+  background-color: #04f4fd;
+  border-radius: 10px;
+  padding: 25px;
+}
+.box {
+  width: 150px;
+  background-color: #D636C9;
+  display: flex;
+}
+.chatName {
+  background-color: #D636C9;
+  color: aliceblue;
+}
+.ListFolders {
+  color: aliceblue;
+  font-weight: bold;
+}
+.chatList {
+  color: aliceblue;
+  width: 200px;
+  display: block;
+}
+.chatList a {
+  display: block;
+  padding: 20px;
+  border-bottom: 1px solid aliceblue;
+}
+.chatList a:last-child {
+  border-bottom: none;
+}
+.chats {
+  display: flex;
+  align-items: flex-start;
+}
+/*# sourceMappingURL=App.css.map */
