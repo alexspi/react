@@ -3,48 +3,33 @@ import React, {useCallback, useState} from "react";
 import {Send} from '@material-ui/icons';
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
-import {addMessageWithThunk} from "../store/messages/actions";
+import {addMessagesWithFB} from "../store/middleware";
 
 
 const ControlPanel = () => {
 
     const [value, setValue] = useState("");
-    const dispatch = useDispatch();
-    const profileName = useSelector(state => state.profile.name)
+    const { name } = useSelector(state => state.profile)
     const {chatId} = useParams();
+    const dispatch = useDispatch();
 
     // const messages = useSelector(state => state.messages.messageList);
 
-    const handleButton = useCallback(()=> {
-        dispatch(addMessageWithThunk(chatId, {
-            text: value,
-            author: profileName
-        }))
-        setValue("")
-    }, [chatId, value, dispatch]);
+    const handleButton = () => {
+        if (value !== "") {
+            const message = {
+                text: value,
+                author: name
+            }
+            dispatch(addMessagesWithFB(chatId, message))
+            setValue("");
+        }
+    };
 
     const handleChange = useCallback((event) => {
         const valueFromInput = event.target.value;
         setValue(valueFromInput);
     }, [value]);
-
-    // Использовали для создания сообщения бота, без
-    // useEffect(() => {
-    //     let timer;
-    //     const currentChat = messages[chatId];
-    //
-    //     if (currentChat?.length > 0 && currentChat[currentChat?.length - 1]?.author === profileName) {
-    //         timer = setInterval(() => {
-    //             const currentMessage = 'Сообщение сгенерировано автоматически';
-    //             sendMessage(currentMessage, 'bot');
-    //             console.log(currentChat[currentChat.length - 1]?.author);
-    //         }, 1500);
-    //     }
-    //
-    //     return () => {
-    //         clearTimeout(timer);
-    //     }
-    // }, [chatId])
 
     return (
         <>

@@ -1,9 +1,9 @@
 import {Link, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {Button, Dialog, DialogTitle, TextField} from "@mui/material";
-import {useState} from "react";
-import {addChat, deleteChat} from "../store/chats/actions";
+import {useEffect, useState} from "react";
 import {Delete} from "@material-ui/icons";
+import {addChatWithFB, deleteChatWithFB, initTrackerWithFB} from "../store/middleware";
 
 
 const ChatList = () => {
@@ -24,14 +24,18 @@ const ChatList = () => {
     const handleChange = (e) => setNewChatName(e.target.value);
 
     const onAddChat = () => {
-        dispatch(addChat(newChatName));
+        dispatch(addChatWithFB(newChatName));
         setNewChatName("");
         handleClose();
     }
 
-    const handleDelete = (index) =>{
-        dispatch(deleteChat(index));
+    const handleDelete = (id) =>{
+        dispatch(deleteChatWithFB(id));
     }
+
+    useEffect(() => {
+        dispatch(initTrackerWithFB());
+    }, []);
 
     return (
         <div className='chatList'>

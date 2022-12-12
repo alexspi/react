@@ -7,6 +7,7 @@ import Routers from "./pages/Routers";
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import {store} from "./store";
+import {AuthProvider} from "./hook/useAuth";
 
 const useGlobalStyles = makeStyles(() =>
     createStyles({
@@ -47,7 +48,9 @@ const GlobalStyles = () => {
 ReactDOM.render(
     <BrowserRouter>
         <Provider store={store}>
-            <Routers/>
+            <AuthProvider>
+                <Routers/>
+            </AuthProvider>
         </Provider>
     </BrowserRouter>
 
